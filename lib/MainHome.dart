@@ -24,13 +24,13 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.only(top: 20, left: 10, right: 10),
           child: SingleChildScrollView(
             child: Wrap(
-              spacing: 10, // Space between items
-              runSpacing: 10, // Space between rows when wrapped
+              spacing: 10,
+              runSpacing: 10,
               children: List.generate(
                 60,
                   (index) => Container(
                   width: 180,
-                  height: 200,// Fixed width for proper wrapping
+                  height: 200,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.blue.shade100,
@@ -40,6 +40,8 @@ class _HomeState extends State<Home> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
+
                      Row(
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                        children: <Widget>[
