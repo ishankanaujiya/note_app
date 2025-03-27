@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
                   height: 200,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade100,
+                    color: Colors.cyan,
                     borderRadius: BorderRadius.circular(10),
                   ),
 
