@@ -27,15 +27,16 @@ class _HomeState extends State<Home> {
               spacing: 10, // Space between items
               runSpacing: 10, // Space between rows when wrapped
               children: List.generate(
-                60, // Number of items
-                    (index) => Container(
+                60,
+                  (index) => Container(
                   width: 180,
-                      height: 200,// Fixed width for proper wrapping
+                  height: 200,// Fixed width for proper wrapping
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.blue.shade100,
                     borderRadius: BorderRadius.circular(10),
                   ),
+
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
