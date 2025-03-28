@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
               children: List.generate(
                 60,
                   (index) => Container(
-                  width: 180,
+                  width: 170,
                   height: 200,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
