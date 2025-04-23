@@ -8,6 +8,7 @@ class _HomeState extends State<Home> {
   double floatingActionButtonWidth = 100;
   double floatingActionButtonHeight = 60;
   bool clickCheck = false;
+  List<List<String>> folderList = [["Default"]];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,11 +69,13 @@ class _HomeState extends State<Home> {
         height: floatingActionButtonHeight,
         child: FloatingActionButton(
           onPressed: () {
+
             clickCheck = !clickCheck;
             setState(() {
-              if(!clickCheck) {
-                floatingActionButtonWidth = 100.0;
-                floatingActionButtonHeight = 100.0;
+              AddButton();
+              if(clickCheck) {
+                floatingActionButtonWidth = 60.0;
+                floatingActionButtonHeight = 150.0;
               }
               else
                 {
@@ -81,9 +84,39 @@ class _HomeState extends State<Home> {
                 }
             });
           },
-          child: Text("Add"),
+          child: classDetector(clickCheck),
         ),
       ),
     );
   }
 }
+
+Widget classDetector(var clickCheck)
+{
+  if(clickCheck)
+    {
+      return AddButton();
+    }
+  return Text("Add");
+}
+
+class AddButton extends StatelessWidget {
+
+  bool clickCheck = false;
+  //AddButton(this.clickCheck);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          // Icon(Icons.folder),
+          // Icon(Icons.file_open),
+          IconButton(onPressed: (){}, icon: Icon(Icons.folder)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.file_open)),
+        ],
+      ),
+    );
+  }
+}
+
