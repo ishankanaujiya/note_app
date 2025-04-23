@@ -54,7 +54,7 @@ class FolderForm extends StatelessWidget {
           child: Container(
             width: 400,
             height: 400,
-            color: Colors.cyan,
+
             child: Column(
               children: [
                 Container(
