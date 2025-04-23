@@ -17,7 +17,12 @@ class _CreateNewFoldersState extends State<CreateNewFolders> {
       appBar: AppBar(
         title: Text("Folder"),
         centerTitle: true,
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.keyboard_backspace_rounded)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.keyboard_backspace_rounded),
+        ),
       ),
 
       body: SingleChildScrollView(

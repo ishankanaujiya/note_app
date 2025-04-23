@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/CreateFolders.dart';
 class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
@@ -112,7 +113,14 @@ class AddButton extends StatelessWidget {
         children: <Widget>[
           // Icon(Icons.folder),
           // Icon(Icons.file_open),
-          IconButton(onPressed: (){}, icon: Icon(Icons.folder)),
+          IconButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => CreateNewFolders()
+                ));
+              },
+              icon: Icon(Icons.folder),
+          ),
           IconButton(onPressed: (){}, icon: Icon(Icons.file_open)),
         ],
       ),
