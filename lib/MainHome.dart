@@ -5,6 +5,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  double floatingActionButtonWidth = 100;
+  double floatingActionButtonHeight = 60;
+  bool clickCheck = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,9 +63,26 @@ class _HomeState extends State<Home> {
           ),
         ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text("Add"),
+      floatingActionButton: SizedBox(
+        width: floatingActionButtonWidth,
+        height: floatingActionButtonHeight,
+        child: FloatingActionButton(
+          onPressed: () {
+            clickCheck = !clickCheck;
+            setState(() {
+              if(!clickCheck) {
+                floatingActionButtonWidth = 100.0;
+                floatingActionButtonHeight = 100.0;
+              }
+              else
+                {
+                  floatingActionButtonWidth = 100.0;
+                  floatingActionButtonHeight = 60.0;
+                }
+            });
+          },
+          child: Text("Add"),
+        ),
       ),
     );
   }
