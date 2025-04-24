@@ -127,26 +127,40 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
 
                 ),
               ) :
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0, bottom: 40.0),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        addFolderClickCheck = true;
-                      });
+                  Container(
 
-                    },
-                    child: Text("Add Folders"),
                   ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 20.0, bottom: 40.0),
+              //   child: SizedBox(
+              //     width: double.infinity,
+              //     child: ElevatedButton(
+              //       onPressed: () {
+              //         setState(() {
+              //           addFolderClickCheck = true;
+              //         });
+              //
+              //       },
+              //       child: Text("Add Folders"),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
       ),
 
+      floatingActionButton: SizedBox(
+        
+        child: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              addFolderClickCheck = true;
+            });
+          },
+        child: Icon(Icons.add),
+        ),
+      ),
     );
   }
 }
