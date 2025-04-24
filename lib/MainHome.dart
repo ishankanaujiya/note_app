@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/CreateFiles.dart';
 import 'package:note_app/CreateFolders.dart';
 class Home extends StatefulWidget {
   List<String> folderName = [];
@@ -81,7 +82,12 @@ void addValueToTheList()
               folderName.length,
                   (index) => InkWell(
                     onTap: () {
+                      String values = folderName[index];
                       print(index);
+                      print(values);
+                      Navigator.pushReplacement(context, MaterialPageRoute(
+                        builder: (context) => CreateNewFiles(values, folderList)
+                      ));
                     },
                     child: Container(
                     width: 170,
