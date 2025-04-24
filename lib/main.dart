@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'MainHome.dart';
 //import 'CreateFolders.dart';
 void main() {
+  List<String> folderName = ["Value"];
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Home(),
+    home: Home(folderName),
   ));
 }
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/CreateFolders.dart';
 class Home extends StatefulWidget {
+  List<String> folderName = [];
+  Home(this.folderName);
   @override
-  State<Home> createState() => _HomeState();
+  State<Home> createState() => _HomeState(folderName);
 }
 
 class _HomeState extends State<Home> {
@@ -10,6 +12,12 @@ class _HomeState extends State<Home> {
   double floatingActionButtonHeight = 60;
   bool clickCheck = false;
   List<List<String>> folderList = [["Default"]];
+
+  List<String> folderName = [];
+  _HomeState(this.folderName);
+
+  var folderNameLength = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,34 +40,40 @@ class _HomeState extends State<Home> {
               spacing: 10,
               runSpacing: 10,
               children: List.generate(
-                60,
-                  (index) => Container(
-                  width: 170,
-                  height: 200,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(10),
+
+              folderName.length,
+                  (index) => InkWell(
+                    onTap: () {
+                      print(index);
+                    },
+                    child: Container(
+                    width: 170,
+                    height: 200,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.cyan,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: <Widget>[
+
+                           Text("Title ${folderName[index]}", style: TextStyle(fontWeight: FontWeight.bold)),
+                           Icon(Icons.menu),
+                         ],
+                       ),
+
+                        Text("Date"),
+                      ],
+                    ),
+                                    ),
                   ),
-
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-
-
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       children: <Widget>[
-
-                         Text("Title $index", style: TextStyle(fontWeight: FontWeight.bold)),
-                         Icon(Icons.menu),
-                       ],
-                     ),
-
-                      Text("Date"),
-                    ],
-                  ),
-                ),
               ),
             ),
           ),
@@ -115,7 +129,7 @@ class AddButton extends StatelessWidget {
           // Icon(Icons.file_open),
           IconButton(
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(
+                Navigator.pushReplacement(context, MaterialPageRoute(
                   builder: (context) => CreateNewFolders()
                 ));
               },

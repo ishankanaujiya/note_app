@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/MainHome.dart';
 class CreateNewFolders extends StatefulWidget {
   @override
   State<CreateNewFolders> createState() => _CreateNewFoldersState();
@@ -19,7 +20,10 @@ class _CreateNewFoldersState extends State<CreateNewFolders> {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              //Navigator.pop(context);
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                builder: (context) => Home(folderName)
+              ));
             },
             icon: Icon(Icons.keyboard_backspace_rounded),
         ),
