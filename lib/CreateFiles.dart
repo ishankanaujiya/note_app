@@ -34,11 +34,13 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
   void displayValues()
   {
     folderList[0].add("1");
-    folderList[0].add("1");
-    folderList[0].add("1");
-    folderList[0].add("1");
+    folderList[0].add("2");
+    folderList[0].add("3");
+    folderList[0].add("4");
     print(folderList);
   }
+
+
   @override
   @override
   Widget build(BuildContext context) {
@@ -145,21 +147,7 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
                   Container(
 
                   ),
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 20.0, bottom: 40.0),
-              //   child: SizedBox(
-              //     width: double.infinity,
-              //     child: ElevatedButton(
-              //       onPressed: () {
-              //         setState(() {
-              //           addFolderClickCheck = true;
-              //         });
-              //
-              //       },
-              //       child: Text("Add Folders"),
-              //     ),
-              //   ),
-              // ),
+
             ],
           ),
         ),
