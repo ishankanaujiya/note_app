@@ -11,12 +11,49 @@ class _HomeState extends State<Home> {
   double floatingActionButtonWidth = 100;
   double floatingActionButtonHeight = 60;
   bool clickCheck = false;
-  List<List<String>> folderList = [["Default"]];
+  List<List<String>> folderList = [];
 
   List<String> folderName = [];
   _HomeState(this.folderName);
 
   var folderNameLength = 0;
+
+
+void initState()
+{
+  super.initState();
+  addValueToTheList();
+}
+
+void addValueToTheList()
+{
+  folderList.clear();
+  for(var i = 0; i<folderName.length; i++)
+    {
+      folderList.add([]);
+
+    }
+  print("The Length is: ${folderList.length}");
+  folderList[0].add("1");
+  folderList[0].add("2");
+  folderList[0].add("3");
+  folderList[0].add("4");
+  // folderList[1].add("4");
+  // folderList[1].add("4");
+  // folderList[1].add("4");
+  // folderList[1].add("4");
+
+  for(var i =0; i<folderList.length; i++)
+    {
+
+      print(folderList[i]);
+      print(folderList[0][2]);
+    }
+}
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +101,7 @@ class _HomeState extends State<Home> {
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                          children: <Widget>[
 
-                           Text("Title ${folderName[index]}", style: TextStyle(fontWeight: FontWeight.bold)),
+                           Text("Title: ${folderName[index]}", style: TextStyle(fontWeight: FontWeight.bold)),
                            Icon(Icons.menu),
                          ],
                        ),
