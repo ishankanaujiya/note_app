@@ -24,6 +24,21 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
 
 
   _CreateNewFilesState(this.folderNameForAppBar, this.folderList);
+
+  void initState()
+  {
+    super.initState();
+    displayValues();
+  }
+
+  void displayValues()
+  {
+    folderList[0].add("1");
+    folderList[0].add("1");
+    folderList[0].add("1");
+    folderList[0].add("1");
+    print(folderList);
+  }
   @override
   @override
   Widget build(BuildContext context) {
