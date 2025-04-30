@@ -19,11 +19,13 @@ class _HomeState extends State<Home> {
 
   var folderNameLength = 0;
 
+  String titleText = "";
+  var contentText;
 
 void initState()
 {
   super.initState();
-  addValueToTheList();
+  //addValueToTheList();
 }
 
 void addValueToTheList()
@@ -86,7 +88,7 @@ void addValueToTheList()
                       print(index);
                       print(values);
                       Navigator.pushReplacement(context, MaterialPageRoute(
-                        builder: (context) => CreateNewFiles(values, folderList)
+                        builder: (context) => CreateNewFiles(values, folderList, titleText, contentText)
                       ));
                     },
                     child: Container(

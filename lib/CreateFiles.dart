@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/AddContentToFiles.dart';
 import 'package:note_app/MainHome.dart';
 class CreateNewFiles extends StatefulWidget {
 
   String ?folderName;
   List<List<String>> folderList = [];
+  String ?titleText;
+  var contentText;
 
-
-  CreateNewFiles(this.folderName, this.folderList);
+  CreateNewFiles(this.folderName, this.folderList, this.titleText, this.contentText);
   @override
-  State<CreateNewFiles> createState() => _CreateNewFilesState(folderName,folderList);
+  State<CreateNewFiles> createState() => _CreateNewFilesState(folderName,folderList, titleText, contentText);
 }
 
 class _CreateNewFilesState extends State<CreateNewFiles> {
@@ -20,15 +22,20 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
   var folderNameInput = TextEditingController();
 
   String ?folderNameForAppBar;
-  List<List<String>> folderList = [];
+  List<List<String>> folderList = [["Default"]];
+  var titleText;
+  var contentText;
 
 
-  _CreateNewFilesState(this.folderNameForAppBar, this.folderList);
+  List<String> titles = [];
+  _CreateNewFilesState(this.folderNameForAppBar, this.folderList, this.titleText, this.contentText);
 
   void initState()
   {
     super.initState();
-    displayValues();
+
+    // displayValues();
+    checkTitle();
   }
 
   void displayValues()
@@ -40,6 +47,24 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
     print(folderList);
   }
 
+
+  void checkTitle() {
+    print("The Title is $titleText");
+
+    if (titleText != null && titleText.toString().trim().isNotEmpty) {
+      // Create a new list for this folder: [title, content]
+      List<String> newFolder = [titleText.toString(), contentText?.toString() ?? ""];
+
+      folderList.add(newFolder);
+
+      print(folderList);
+      print(folderList.length);
+      print(folderList[1]); // This will be the title of the first folder
+      print(folderList[1][0]); // This will be the title of the first folder
+    } else {
+      print("Null Title");
+    }
+  }
 
   @override
   @override
@@ -60,97 +85,107 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
       ),
 
       body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+        // child: Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   // mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
 
-              // Container(
-              //   height: 400,
-              //   color: Colors.cyan,
-              //   child: ListView.builder(itemBuilder: (context,index) {
-              //     return Container(
-              //       child: Text("${folderName[index]}"),
-              //     );
-              //   },
-              //     itemCount: folderName.length,
-              //   ),
-              // ),
+            child: Wrap(
+              children: List.generate(
 
+                titles.length,
+                  (index) => Container(
+                    width: 200,
+                    height: 200,
+                    color: Colors.cyan,
+                    child: Text("${titles[index]}"),
 
-              SizedBox(
-                height: 40,
+                  ),
               ),
-              for(var i = 0; i<folderName.length; i++)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
-                  child: Container(
-                    width: double.infinity,
-
-                    child: Text("${folderName[i]}", style: TextStyle(
-                      fontSize: 40,
-
-                    ),),
-                  ),
-                ),
-
-              addFolderClickCheck ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 400,
+            ),
+            // Container(
+            //   height: 400,
+            //   color: Colors.cyan,
+            //   child: ListView.builder(itemBuilder: (context,index) {
+            //     return Container(
+            //       child: Text("${folderName[index]}"),
+            //     );
+            //   },
+            //     itemCount: folderName.length,
+            //   ),
+            // ),
 
 
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        child: TextField(
-                          controller: folderNameInput,
-                          decoration: InputDecoration(
-                            label: Text("Folder Name"),
-                          ),
-                        ),
-                      ),
+            // SizedBox(
+            //   height: 40,
+            // ),
+            // for(var i = 0; i<folderName.length; i++)
+            //   Padding(
+            //     padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
+            //     child: Container(
+            //       width: double.infinity,
+            //
+            //       child: Text("${folderName[i]}", style: TextStyle(
+            //         fontSize: 40,
+            //
+            //       ),),
+            //     ),
+            //   ),
 
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 200,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                folderName.add(folderNameInput.text);
-                                setState(() {
-                                  addFolderClickCheck = false;
-                                  folderNameInput.clear();
-                                });
-
-                              },
-                              child: Text("Done"),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-
-
-                ),
-              ) :
-                  Container(
-
-                  ),
-
-            ],
-          ),
-        ),
+            // addFolderClickCheck ? Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Container(
+            //     width: 400,
+            //
+            //
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Container(
+            //           width: double.infinity,
+            //           child: TextField(
+            //             controller: folderNameInput,
+            //             decoration: InputDecoration(
+            //               label: Text("Folder Name"),
+            //             ),
+            //           ),
+            //         ),
+            //
+            //         SizedBox(
+            //           height: 20,
+            //         ),
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.center,
+            //           children: [
+            //             SizedBox(
+            //               width: 200,
+            //               height: 50,
+            //               child: ElevatedButton(
+            //                 onPressed: () {
+            //                   folderName.add(folderNameInput.text);
+            //                   setState(() {
+            //                     addFolderClickCheck = false;
+            //                     folderNameInput.clear();
+            //                   });
+            //
+            //                 },
+            //                 child: Text("Done"),
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ],
+            //     ),
+            //
+            //
+            //   ),
+            // ) :
+            //     Container(
+            //
+            //     ),
+        //
+        //   ],
+        // ),
       ),
 
       floatingActionButton: SizedBox(
@@ -159,6 +194,9 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
           onPressed: () {
             setState(() {
               addFolderClickCheck = true;
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (context) => AddFileContent(folderNameForAppBar, folderList)
+              ));
             });
           },
         child: Icon(Icons.add),

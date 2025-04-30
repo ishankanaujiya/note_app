@@ -6,8 +6,8 @@ void main() {
   List<String> folderName = ["Value"];
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    // home: Home(folderName),
-    home: AddFileContent(),
+    home: Home(folderName),
+    // home: AddFileContent(),
   ));
 }
 
