@@ -40,18 +40,19 @@ class _AddFileContentState extends State<AddFileContent> {
                   ),
                 ),
 
-                trailing: ElevatedButton(
-                  onPressed: () {
-                    String inputTitleText = titleText.text;
-                    if(inputTitleText.isEmpty)
+
+                trailing: TextButton(
+                    onPressed: () {
+                      String inputTitleText = titleText.text;
+                      if(inputTitleText.isEmpty)
                       {
                         print("Enter Title");
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text('Popup Title'),
-                              content: Text('This is a simple popup window!'),
+                              title: Text('Title Required'),
+                              content: Text("Enter The Title"),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
@@ -65,13 +66,10 @@ class _AddFileContentState extends State<AddFileContent> {
                           },
                         );
                       }
-                  },
-                  child: Text("Done"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
+                    },
+                    child: Text("Done"),
                 ),
+
               ),
             ),
           ),
