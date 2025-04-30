@@ -59,8 +59,8 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
 
       print(folderList);
       print(folderList.length);
-      print(folderList[1]); // This will be the title of the first folder
-      print(folderList[1][0]); // This will be the title of the first folder
+      print(folderList[0]); // This will be the title of the first folder
+      print(folderList[0][0]); // This will be the title of the first folder
     } else {
       print("Null Title");
     }
@@ -90,17 +90,54 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
         //   // mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
 
-            child: Wrap(
-              children: List.generate(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: List.generate(
 
-                titles.length,
-                  (index) => Container(
-                    width: 200,
-                    height: 200,
-                    color: Colors.cyan,
-                    child: Text("${titles[index]}"),
+                  folderList.length,
+                    (index) => InkWell(
+                      onTap: () {
+                        print(index);
+                      },
 
-                  ),
+                      child: Container(
+                        width: 180,
+                        height: 150,
+                        // child: Text("${folderList[index][0]}"),
+                        decoration: BoxDecoration(
+                          color: Colors.cyan,
+                          borderRadius: BorderRadius.circular(10),
+
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("${folderList[index][0]}", style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),),
+                                    Text("Date: ", style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),),
+                                  ],
+                                ),
+                            ),
+                            // Text("Date: "),
+                          ],
+                        ),
+
+
+                      ),
+                    ),
+                ),
               ),
             ),
             // Container(
@@ -189,7 +226,7 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
       ),
 
       floatingActionButton: SizedBox(
-        
+
         child: FloatingActionButton(
           onPressed: () {
             setState(() {
