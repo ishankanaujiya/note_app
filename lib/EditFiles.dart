@@ -42,6 +42,16 @@ class _EditFileContentState extends State<EditFileContent> {
     contentText.text = fileContent.toString();
 
   }
+
+  bool isTitleDuplicate(String newTitle) {
+    for (int i = 0; i < folderList.length; i++) {
+      // Check if the new title matches any existing title (excluding the current one)
+      if (i != index && folderList[i][0] == newTitle) {
+        return true;  // Duplicate title found
+      }
+    }
+    return false;  // No duplicate title found
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,6 +108,13 @@ class _EditFileContentState extends State<EditFileContent> {
                             ],
                           );
                         },
+                      );
+                    }
+                    else if (isTitleDuplicate(inputTitleText)) {
+                      // If the title already exists, show an alert
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(
+                            "Title already exists. Choose a different name.")),
                       );
                     }
                     else
