@@ -116,13 +116,17 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Container(
+                              width: 150,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("${folderList[index][0]}", style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),),
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Text("${folderList[index][0]}", style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                      ),),
+                                    ),
                                     Text("Date: ", style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
