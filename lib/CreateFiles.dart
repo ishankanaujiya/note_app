@@ -56,7 +56,10 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
       // Create a new list for this folder: [title, content]
       List<String> newFolder = [titleText.toString(), contentText?.toString() ?? ""];
 
-      folderList.add(newFolder);
+      setState(() {
+        folderList.add(newFolder);
+      });
+
 
       print(folderList);
       print(folderList.length);
