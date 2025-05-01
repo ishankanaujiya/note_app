@@ -35,6 +35,7 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
   {
     super.initState();
 
+    print("This is the CreateFiles FolderList from initstate: $folderList");
     // displayValues();
     checkTitle();
   }
@@ -51,27 +52,40 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
 
   void checkTitle() {
     print("The Title is $titleText");
+    print("The FolderList from checkTitle of initstate is $folderList");
 
     if (titleText != null && titleText.toString().trim().isNotEmpty) {
-      // Create a new list for this folder: [title, content]
-      List<String> newFolder = [titleText.toString(), contentText?.toString() ?? ""];
+      String newTitle = titleText.toString().trim();
 
+      // Check if the title already exists in folderList
+      bool titleExists = folderList.any((folder) => folder[0] == newTitle);
 
-      folderList.add(newFolder);
+      if (titleExists) {
+        print("Title already exists. Not adding again.");
+        return;
+      }
+
+      setState(() {
+        List<String> newFolder = [newTitle, contentText?.toString() ?? ""];
+        folderList.add(newFolder);
+      });
 
       print(folderList);
       print(folderList.length);
-      print(folderList[0]); // This will be the title of the first folder
-      print(folderList[0][0]); // This will be the title of the first folder
+      print(folderList[0]);
+      print(folderList[0][0]);
     } else {
       print("Null Title");
     }
   }
 
+
+
   @override
   @override
   Widget build(BuildContext context) {
     print("This is build function");
+    print("This is CreateFiles FolderList from build function is $folderList");
     return Scaffold(
       appBar: AppBar(
         title: Text("$folderNameForAppBar"),

@@ -109,6 +109,7 @@ class _EditFileContentState extends State<EditFileContent> {
 
                       folderList[index][0] = editedTitle;
                       folderList[index][1] = editedContent;
+                      print("This is FolderList $folderList");
                       Navigator.pushReplacement(context, MaterialPageRoute(
                           builder: (context) => CreateNewFiles(folderName, folderList, editedTitle, editedContent)
 
