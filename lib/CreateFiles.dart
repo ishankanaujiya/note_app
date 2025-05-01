@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/AddContentToFiles.dart';
+import 'package:note_app/EditFiles.dart';
 import 'package:note_app/MainHome.dart';
 class CreateNewFiles extends StatefulWidget {
 
@@ -69,6 +70,7 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
   @override
   @override
   Widget build(BuildContext context) {
+    print("This is build function");
     return Scaffold(
       appBar: AppBar(
         title: Text("$folderNameForAppBar"),
@@ -100,7 +102,12 @@ class _CreateNewFilesState extends State<CreateNewFiles> {
                   folderList.length,
                     (index) => InkWell(
                       onTap: () {
+                        var fileTitle = folderList[index][0].toString();
+                        var fileContent = folderList[index][1].toString();
                         print(index);
+                        Navigator.pushReplacement(context, MaterialPageRoute(
+                          builder: (context) => EditFileContent(folderNameForAppBar, fileTitle, fileContent, folderList, index)
+                        ));
                       },
 
                       child: Container(
