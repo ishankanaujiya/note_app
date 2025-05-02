@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:note_app/AddContentToFiles.dart';
 import 'package:note_app/CreateFiles.dart';
 import 'package:note_app/CreateFolders.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class Home extends StatefulWidget {
   List<String> folderName = [];
   Home(this.folderName);
@@ -23,11 +24,35 @@ class _HomeState extends State<Home> {
   String titleText = "";
   var contentText;
 
+  static const KEYFORFOLDERNAME = "foldername";
+
+  List<String> storedFolderName = [];
+
 void initState()
 {
   super.initState();
   //addValueToTheList();
+  getFolderName();
 }
+
+  void getFolderName() async
+  {
+    print("This is Init Method");
+    var pref = await SharedPreferences.getInstance();
+
+    storedFolderName = pref.getStringList(KEYFORFOLDERNAME) ?? ["Default"];
+
+    print("The Stored Folder Name is: $storedFolderName");
+    folderName.clear();
+
+    folderName.addAll(storedFolderName);
+    print("The Folder Name from Init Method is: $folderName");
+
+    setState(() {
+
+    });
+
+  }
 
 void addValueToTheList()
 {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/MainHome.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class CreateNewFolders extends StatefulWidget {
   @override
   State<CreateNewFolders> createState() => _CreateNewFoldersState();
@@ -10,16 +11,55 @@ class _CreateNewFoldersState extends State<CreateNewFolders> {
   List<String> folderNameHolder = [];
   bool addFolderClickCheck = false;
 
+  static const KEYFORFOLDERNAME = "foldername";
+
+  List<String> storedFolderName = [];
 
   var folderNameInput = TextEditingController();
+
+  void initState()
+  {
+    super.initState();
+
+    getFolderName();
+  }
+
+  void getFolderName() async
+  {
+    print("This is Init Method");
+    var pref = await SharedPreferences.getInstance();
+
+    storedFolderName = pref.getStringList(KEYFORFOLDERNAME) ?? ["Default"];
+
+    print("The Stored Folder Name is: $storedFolderName");
+    folderName.clear();
+
+    folderName.addAll(storedFolderName);
+    print("The Folder Name from Init Method is: $folderName");
+
+    setState(() {
+
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
+
+    print("The Folder Name from Build Method is: $folderName");
     return Scaffold(
       appBar: AppBar(
         title: Text("Folder"),
         centerTitle: true,
         leading: IconButton(
-            onPressed: () {
+            onPressed: () async {
+              var pref = await SharedPreferences.getInstance();
+
+              pref.setStringList(KEYFORFOLDERNAME, folderName);
+
+              print("Value Stored Locally");
+
               //Navigator.pop(context);
               Navigator.pushReplacement(context, MaterialPageRoute(
                 builder: (context) => Home(folderName)
@@ -53,6 +93,7 @@ class _CreateNewFoldersState extends State<CreateNewFolders> {
               SizedBox(
                 height: 40,
               ),
+
               for(var i = 0; i<folderName.length; i++)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
@@ -65,7 +106,8 @@ class _CreateNewFoldersState extends State<CreateNewFolders> {
                     ),),
                   ),
                 ),
-        
+
+
               addFolderClickCheck ? Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
