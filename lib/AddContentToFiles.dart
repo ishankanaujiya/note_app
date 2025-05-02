@@ -20,6 +20,7 @@ class _AddFileContentState extends State<AddFileContent> {
   String ?fileContent;
 
   _AddFileContentState(this.folderName, this.folderList);
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
