@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/AddContentToFiles.dart';
 import 'package:note_app/CreateFiles.dart';
 import 'package:note_app/CreateFolders.dart';
 class Home extends StatefulWidget {
@@ -164,6 +165,9 @@ class AddButton extends StatelessWidget {
 
   bool clickCheck = false;
   //AddButton(this.clickCheck);
+
+  String folderName = "Default";
+  List<List<String>> folderList = [];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -180,7 +184,14 @@ class AddButton extends StatelessWidget {
               },
               icon: Icon(Icons.folder),
           ),
-          IconButton(onPressed: (){}, icon: Icon(Icons.file_open)),
+          IconButton(
+              onPressed: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (context) => AddFileContent(folderName, folderList)
+                ));
+              },
+              icon: Icon(Icons.file_open),
+          ),
         ],
       ),
     );
